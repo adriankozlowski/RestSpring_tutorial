@@ -1,12 +1,14 @@
 package com.example.demo.dto;
 
 import javax.persistence.Column;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by Adrian on 28.06.2017.
  */
+@XmlRootElement
 public class FlatDto {
     private Integer id;
     private Integer rooms;

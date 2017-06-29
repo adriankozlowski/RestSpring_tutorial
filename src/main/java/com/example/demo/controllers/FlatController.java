@@ -3,7 +3,9 @@ package com.example.demo.controllers;
 import com.example.demo.dto.FlatDto;
 import com.example.demo.model.Flat;
 import com.example.demo.repository.FlatRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,16 +35,21 @@ public class FlatController {
             flatDto.setAdded(simpleDateFormat.format(flat.getAdded()));
             flatDto.setModified(simpleDateFormat.format(flat.getModified()));
             resultList.add(flatDto);
+            Date date = new Date();
+            System.out.println(date);
+            String format = simpleDateFormat.format(date);
         }
 
         return resultList;
 
     }
 
-    @RequestMapping("/flat/{id}")
-    public Flat getSingleFlat(@PathVariable("id") Integer id){
-
-        return flatRepository.findOne(id);
+    @RequestMapping(value = "/flat/{id}", produces = "application/xml")
+    public FlatDto getSingleFlat(@PathVariable("id") Integer id){
+        Flat one = flatRepository.findOne(id);
+        ModelMapper modelMapper = new ModelMapper();
+        FlatDto map = modelMapper.map(one, FlatDto.class);
+        return map;
 
     }
 
@@ -53,6 +60,30 @@ public class FlatController {
         flatRepository.save(flat);
 
         return "Success";
+    }
+
+
+    public void testXml(){
+//        Customer customer = new Customer();
+//        customer.setId(100);
+//        customer.setName("mkyong");
+//        customer.setAge(29);
+//
+//        try {
+//
+//            File file = new File("C:\\file.xml");
+//            JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//
+//            // output pretty printed
+//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//
+//            jaxbMarshaller.marshal(customer, file);
+//            jaxbMarshaller.marshal(customer, System.out);
+//
+//        } catch (JAXBException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
