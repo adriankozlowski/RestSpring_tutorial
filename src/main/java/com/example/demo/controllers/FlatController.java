@@ -1,20 +1,16 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dto.FlatDto;
+import com.example.demo.model.Customer;
 import com.example.demo.model.Flat;
 import com.example.demo.repository.FlatRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Adrian on 28.06.2017.
@@ -64,11 +60,11 @@ public class FlatController {
 
 
     public void testXml(){
-//        Customer customer = new Customer();
-//        customer.setId(100);
-//        customer.setName("mkyong");
-//        customer.setAge(29);
-//
+        Customer customer = new Customer();
+        customer.setId(100);
+        customer.setName("aaaa");
+        customer.setAge(29);
+
 //        try {
 //
 //            File file = new File("C:\\file.xml");
